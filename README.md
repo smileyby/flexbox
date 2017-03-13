@@ -33,3 +33,167 @@ flexbox是一个模块而不是属性，它涉及到了一系列的属性。其�
 
 display:flex | inline-flex; （运用在父元素弹性容器上）
 
+这个属性定义出一个弹性容器，容器以内敛或者块级方式布局取决于给定的值
+
+```css
+
+	display: other values | flex | inline-flex;
+
+```
+
+请注意的是：
+*	CSS3的columns属性对弹性容器是没有影响的
+*	float，clear和vertical-align对弹性项目块没有影响
+
+#### flex-direction(应用在弹性容器的父元素上)
+
+这个属性决定主轴的方向，因为它确定了弹性项目块在弹性容器中的方向
+
+```css
+
+	flex-direction: row | row-reverse | column | column-reverse;
+
+```
+
+*	row （默认）：从左到右是ltr；从右到左是rtl
+*	row-reverse：从右到左是ltr；从左到右是rtl
+*	column：内容按从上到下排列
+*	column-reverse：内容按从下到上排列
+
+#### flex-flow(应用在弹性容器的父元素上)
+
+是属性`flex-direction`和`flex-wrap`的缩写，能够同时定义弹性容器的主轴和交叉轴。
+默认值是`row nowrap`
+
+```css
+
+	flex-flow: <'flex-direction'> || <'flex-wrap'>;
+
+```
+
+#### justify-content（应用在弹性容器的父元素上）
+
+定义了主轴方向的布局，它的作用是分发除了弹性内容以外的空白区域
+
+```css
+
+	justify-content: flex-start | flex-end | center | space-between | space-around;
+
+```
+
+*	flex-start(默认)：内容从开始方向排列
+*	flex-end：内容从结束方向开始排列
+*	center：内容集中在中间
+*	space-between：内容散落分布在基准线上；第一个内容及爱着开始线，最后一个内容紧挨着结束线
+*	space-around：内容散落分布在基准线上；内容之间以相同的宽度隔开
+
+![](/img/2.png)
+
+#### align-item（应用在弹性容器的父元素上）
+
+这个属性定义的是弹性项目块在交叉轴上的排列方式，可以认为是justify-content这个属性在交叉轴上的应用（前者是在主轴上）
+
+```css
+
+	align-item: flex-start | flex-end | center | baseline | stretch;
+
+```
+
+*	flex-start：内容排列在交叉轴的开始基准线处
+*	flex-end：内容排列在交叉轴的结束基准线处
+*	center：排列在交叉轴的中部
+*	baseline：内容以他们的极基线对齐
+*	stretch：上下铺满整个父容器（同样也会遵循min-width或者max-width的设置）
+
+![](/img/3.png)
+
+#### align-content（用用于弹性元素上）
+
+当交叉轴方向上有多余的空白部分的时候，此属性定义了多行之间的排列方式，类似于justify-content在主轴上对单个内容的影响
+
+注意：当容器的内容只有一行的时候，此属性没有任何影响
+
+```css
+
+	align-content: flex-start | flex-end | center | space-between | space-around | strech;
+
+```
+
+*	flex-start：多行内容排列在容器的开始基线
+*	flex-end：多行内容排列在容器的结束基线处
+*	center：内容排列在容器的中部
+*	space-between：每行聚云分布；第一行分布在容器的开始处，最后一行分布在容器的结束处
+*	strech(默认)：默认内容沾满整个剩余空间
+
+![](/img/4.png)
+
+#### order（应用在弹性内容上）
+
+默认情况下，弹性项目块按原始顺序布局，不过，order这个属性可以控制项目快在容器中的顺序。
+
+#### flex-grow（应用在弹性内容上）
+
+定义了一个弹性项目快的弹性增长情况。该属性的值是数字，用数字来作为比例，决定弹性容器的项目块占领的可用空间大小。
+
+如果所有的弹性项目块都设置了`flex-grow:1;`，那么每个项目快在容器中都会被设置成相同的大小。如果你给其中一个项目块设置了`flex-grow:2;`,那么这个项目快占用的空间就会是别的项目块的两倍。
+
+```css
+
+	flex-grow: <number> (default 0);
+
+```
+
+注意：负值不允许使用。
+
+#### flex-shrink（应用在弹性内容上）
+
+定义在弹性内容的收缩情况；同样负值也是不允许的。
+
+```css
+
+	flex-shrink: <number> (default 1);
+
+```
+
+#### flex-basis（应用在弹性内容上）
+
+在剩余空间分配之前，定义了元素的基准 伸缩值
+
+```css
+
+	flex-basis: <length> | auto (default auto);
+
+```
+
+#### flex（应用在弹性内容上）
+
+这个内容是flex-grow，flex-shrink，flex-basis这是哪个属性的缩写形式。第二个和第三个参数是可选的。默认是 0 1 auto。
+
+```css
+	
+	flex: none | [<'flex-grow'> <'flex-shrink'>? || <'flex-basis'>];	
+	
+```
+
+#### align-self （应用在弹性内容上）
+
+这个属性能够覆盖默认的对其方式或者是align-items属性定义的方式
+
+具体的属性value值得含义可以参考align-items的解释
+
+```css
+
+	align-self: auto | flex-start | flex-end | center | baseline | stretch;
+
+```
+
+### 例子
+
+[http://codepen.io/HugoGiraudel/pen/LklCv](http://codepen.io/HugoGiraudel/pen/LklCv)
+
+[http://codepen.io/HugoGiraudel/pen/pkwqH](http://codepen.io/HugoGiraudel/pen/pkwqH)
+
+[http://codepen.io/HugoGiraudel/pen/qIAwr](http://codepen.io/HugoGiraudel/pen/qIAwr)
+
+
+
